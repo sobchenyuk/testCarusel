@@ -3,10 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
+          integrity="sha256-2pUeJf+y0ltRPSbKOeJh09ipQFYxUdct5nTY6GAXswA="
+          crossorigin="anonymous" />
+
+    <style>
+
+        .right {
+            margin-left: auto;
+        }
+
+        .carousel {
+            overflow: hidden;
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            display: block;
+        }
+        .carousel-item {
+            display: inline-block;
+            position:relative;
+            left:0;
+            top:0;
+        }
+        .carousel .images {
+            width: 500px;
+            height: 500px;
+            float: left;
+        }
+
+    </style>
 </head>
 <body>
 
-<div id="output"></div>
+<section class="hero is-medium">
+    <div class="hero-body">
+        <div class="container">
+
+            <div id="app">
+
+                <div class="buttons">
+
+                    <button type="button"
+                            class="button right">Left</button>
+
+                    <button type="button"
+                            class="button">Right</button>
+
+                </div>
+
+                <div class="carousel">
+                    <ul class="carousel-item">
+                        <li class="images has-background-primary"></li>
+                        <li class="images has-background-success"></li>
+                        <li class="images has-background-danger"></li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
 
 <script src="public/index.js"></script>
 
