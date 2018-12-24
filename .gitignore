@@ -3,4 +3,7 @@
 /.idea
 /.git
 
+.git/*
+.idea/*
+
 package-lock.json
