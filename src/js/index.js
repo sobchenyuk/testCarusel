@@ -1,3 +1,5 @@
+const Slider = (function() {
+
 const Slider = {
 	initCarousel() {
 		this.carouselItem = document.querySelector('.carousel-item');
@@ -34,20 +36,24 @@ const Slider = {
 
 		return this.count;
 	},
-	left(btn) {
-		this.listen(btn)
-	},
-	right(btn) {
-		this.listen(btn)
-	},
-	init() {
+	handler() {
 		this.initCarousel();
-		this.left(this.btnLeft);
-		this.right(this.btnRight);
+		this.listen(this.btnLeft);
+		this.listen(this.btnRight);
 	},
 	listen(btn) {
 		btn.addEventListener('click', () => this.carouselItem.style.cssText += `left: ${btn.innerHTML === 'Left' ? this.changePosition('-') : this.changePosition('+') }px`)
 	}
 };
 
-Slider.init();
+return {
+	init() {
+		return Slider.handler()
+	} 
+}
+
+
+}());
+
+Slider.init()
+
