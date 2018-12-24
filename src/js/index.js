@@ -14,8 +14,6 @@ const Slider = {
 		this.count = 0;
 		this.WC = this.WIDTH * this.COUNT_SLIDER;
 
-		if(!this.loops) this.carouselItem.style.cssText = `width: ${this.WC}px; left: ${this.count};`;
-
 		this.buttons = document.querySelector('.buttons');
 		this.btnLeft = this.buttons.querySelector('.button.left');
 		this.btnRight = this.buttons.querySelector('.button.right');
@@ -26,7 +24,11 @@ const Slider = {
 			document.querySelector('body').classList.add('loop');
 
 			this.images[0].classList.add('active');
-		} 
+
+		} else {
+
+			this.carouselItem.style.cssText = `width: ${this.WC}px; left: ${this.count};`;
+		}
 
 		this.loops = SliderConfig.loop;
 		
@@ -101,4 +103,4 @@ return {
 
 }());
 
-Slider.init({loop: true});
+Slider.init();
