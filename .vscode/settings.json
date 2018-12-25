@@ -1,4 +1,5 @@
 {
     "typescript.suggestionActions.enabled": false,
-    "javascript.suggestionActions.enabled": false
+    "javascript.suggestionActions.enabled": false,
+    "terminal.integrated.fontSize": 15
 }
