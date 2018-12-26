@@ -10,10 +10,9 @@ const Slider = (function() {
 	const Slider = {
 		initCarousel(config) {
 			this.carouselItem = document.querySelector('.carousel-item');
-			this.images = this.carouselItem.querySelectorAll('.images');
 			
 			this.WIDTH = this.carouselItem.getBoundingClientRect().width;
-			this.COUNT_SLIDER = this.images.length;
+			this.COUNT_SLIDER = this.getImages().length;
 			this.count = 0;
 			this.WC = this.WIDTH * this.COUNT_SLIDER;
 
@@ -28,29 +27,22 @@ const Slider = (function() {
 						 
 					setBodyClass('loop')
 
-					this.images[0].classList.add('active');
+					this.getImages()[0].classList.add('active');
 
 				} else if (config.infinity) {
 
 					SliderConfig.infinity = config.infinity;
 
-					const firstElem = this.images[this.images.length -1].cloneNode(true);
-					const lastElem = this.images[0].cloneNode(true);
+					// const firstElem = this.getImages()[this.getImages().length -1].cloneNode(true);
+					// const lastElem = this.getImages()[0].cloneNode(true);
 
-					firstElem.classList.add('firstElem')
-					lastElem.classList.add('lastElem')
-
-
-					this.carouselItem.insertBefore(firstElem, this.carouselItem.children[0]);
-					this.carouselItem.appendChild(lastElem)
-
-
-					this.images = this.carouselItem.querySelectorAll('.images');
+					// this.carouselItem.insertBefore(firstElem, this.carouselItem.children[0]);
+					// this.carouselItem.appendChild(lastElem)
 			
-					this.WIDTH = this.carouselItem.getBoundingClientRect().width;
-					this.COUNT_SLIDER = this.images.length;
-					this.count = this.WIDTH ;
-					this.WC = this.WIDTH * this.COUNT_SLIDER;
+					// this.WIDTH = this.carouselItem.getBoundingClientRect().width;
+					// this.COUNT_SLIDER = this.getImages().length;
+					// this.count = this.WIDTH ;
+					// this.WC = this.WIDTH * this.COUNT_SLIDER;
 					setBodyClass('infinity')
 
 					this.carouselItem.style.cssText = `width: ${this.WC}px; left: -${this.count}px;`;
@@ -65,6 +57,9 @@ const Slider = (function() {
 			this.loops = SliderConfig.loop;
 			this.infinity = SliderConfig.infinity;
 			
+		},
+		getImages() {
+			return this.carouselItem.querySelectorAll('.images');
 		},
 		changePosition(arg) {
 
@@ -90,6 +85,8 @@ const Slider = (function() {
 
 		const RW = parseInt(`-${this.WC}`);
 
+		console.log(this.getImages())
+
 		if (arg === '+') {
 
 			if(this.count === this.WIDTH) {
@@ -97,25 +94,21 @@ const Slider = (function() {
 			} else {
 				this.count = this.count - this.WIDTH
 			}
-
+			
 			if(this.count < (RW +500)) {
-				this.count = parseInt(`-${this.WIDTH}`)
+				this.count = 0;
 			};
 			
 		} else if (arg === '-') {
 
 			if(this.count === this.WIDTH) {
-
 				this.count = 0
-	
 			} else {
-	
 				this.count = this.count + this.WIDTH
-	
 			}
-	
-			if(this.count === 0) {
-				this.count = (RW +500)
+
+			if(this.count === this.WIDTH) {
+				this.count = (RW +500);
 			}
 
 		}
@@ -134,7 +127,7 @@ const Slider = (function() {
 					this.active.previousElementSibling.classList.add('active')
 				} else {
 					this.active.classList.remove('active')
-					this.images[this.images.length - 1].classList.add('active')
+					this.getImages()[this.getImages().length - 1].classList.add('active')
 				}
 
 			} else if(name === '+') {
@@ -143,7 +136,7 @@ const Slider = (function() {
 					this.active.nextElementSibling.classList.add('active')
 				} else {
 					this.active.classList.remove('active')
-					this.images[0].classList.add('active')
+					this.getImages()[0].classList.add('active')
 				}
 			}
 		},
